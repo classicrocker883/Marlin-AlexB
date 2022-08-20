@@ -1,4 +1,4 @@
-/**ManualMesh 3x3 | <@1646 to change Grid to 5x5>
+/**
  * Marlin 3D Printer Firmware
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
@@ -49,12 +49,6 @@
  * Průša Calculator:    https://blog.prusaprinters.org/calculator_3416/
  *
  * Calibration Guides:  https://reprap.org/wiki/Calibration
- *                     
- * Example Configs:     https://github.com/MarlinFirmware/Configurations/branches/all
- *
- * Průša Calculator:    https://blog.prusaprinters.org/calculator_3416/
- *
- * Calibration Guides:  https://reprap.org/wiki/Calibration
  *                      https://reprap.org/wiki/Triffid_Hunter%27s_Calibration_Guide
  *                      https://sites.google.com/site/repraplogphase/calibration-of-your-reprap
  *                      https://youtu.be/wAL9d7FgInk
@@ -75,7 +69,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "Andrew LeDuc" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "Alejandro Quezada" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -108,7 +102,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT 1
+#define SERIAL_PORT 2
 
 /**
  * Serial Port Baud Rate
@@ -122,7 +116,7 @@
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
 #define BAUDRATE 115200
-#define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate
+//#define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate
 
 /**
  * Select a secondary serial port on the board to use for communication with the host.
@@ -605,9 +599,9 @@
     #define DEFAULT_Kd_LIST {  78.81,  78.81 }
   #else
     // Ender 3 v2
-    #define DEFAULT_Kp  24.27
-    #define DEFAULT_Ki   3.05
-    #define DEFAULT_Kd  48.15
+    #define DEFAULT_Kp  28.72
+    #define DEFAULT_Ki   2.62
+    #define DEFAULT_Kd  78.81
   #endif
 #endif // PIDTEMP
 
@@ -645,9 +639,9 @@
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
   // Ender 3 V2
-  #define DEFAULT_bedKp 128.06
-  #define DEFAULT_bedKi 24.95
-  #define DEFAULT_bedKd 438.07
+  #define DEFAULT_bedKp 53.34
+  #define DEFAULT_bedKi 8.42
+  #define DEFAULT_bedKd 225.19
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -920,14 +914,14 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 98 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 500, 500, 12, 120 }
+#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 80 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -969,9 +963,9 @@
  */
 #define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
-  #define DEFAULT_XJERK 8.0
-  #define DEFAULT_YJERK 8.0
-  #define DEFAULT_ZJERK  0.2
+  #define DEFAULT_XJERK 10.0
+  #define DEFAULT_YJERK 10.0
+  #define DEFAULT_ZJERK  0.3
   //#define DEFAULT_IJERK  0.3
   //#define DEFAULT_JJERK  0.3
   //#define DEFAULT_KJERK  0.3
@@ -984,7 +978,7 @@
   #endif
 #endif
 
-#define DEFAULT_EJERK    2.5  // May be used by Linear Advance
+#define DEFAULT_EJERK    5.0  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -1057,7 +1051,7 @@
  * Use G29 repeatedly, adjusting the Z height at each point with movement commands
  * or (with LCD_BED_LEVELING) the LCD controller.
  */
-#define PROBE_MANUALLY
+//#define PROBE_MANUALLY
 
 /**
  * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
@@ -1172,20 +1166,20 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -51.6, -5.1, -1.0 }
+#define NOZZLE_TO_PROBE_OFFSET { 0, 0, 0 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 0
+#define PROBING_MARGIN 15
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_FEEDRATE (160*60)
+#define XY_PROBE_FEEDRATE (133*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_FEEDRATE_FAST (6*60)
+#define Z_PROBE_FEEDRATE_FAST (4*60)
 
 // Feedrate (mm/min) for the "accurate" probe of each point
-#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2.67)
+#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
 
 /**
  * Probe Activation Switch
@@ -1531,14 +1525,14 @@
 //#define AUTO_BED_LEVELING_LINEAR
 //#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
-#define MESH_BED_LEVELING
+//#define MESH_BED_LEVELING
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable one of
  * these options to restore the prior leveling state or to always enable
  * leveling immediately after G28.
  */
-#define RESTORE_LEVELING_AFTER_G28
+//#define RESTORE_LEVELING_AFTER_G28
 //#define ENABLE_LEVELING_AFTER_G28
 
 /**
@@ -1580,7 +1574,7 @@
   /**
    * Enable the G26 Mesh Validation Pattern tool.
    */
-  #define G26_MESH_VALIDATION
+  //#define G26_MESH_VALIDATION
   #if ENABLED(G26_MESH_VALIDATION)
     #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diameter of primary nozzle.
     #define MESH_TEST_LAYER_HEIGHT   0.2  // (mm) Default layer height for G26.
@@ -1628,11 +1622,11 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  #define MESH_INSET 12              // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 3      // Don't use more than 15 points per axis, implementation limited.
+  #define MESH_INSET 1              // Set Mesh bounds as an inset region of the bed
+  #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
-  #define UBL_HILBERT_CURVE       // Use Hilbert distribution for less travel when probing multiple points
+  //#define UBL_HILBERT_CURVE       // Use Hilbert distribution for less travel when probing multiple points
 
   #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
   #define UBL_SAVE_ACTIVE_ON_M500   // Save the currently active mesh in the current slot on M500
@@ -1648,7 +1642,7 @@
   //=================================== Mesh ==================================
   //===========================================================================
 
-  #define MESH_INSET 12          // Set Mesh bounds as an inset region of the bed
+  #define MESH_INSET 10          // Set Mesh bounds as an inset region of the bed
   #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
@@ -1672,10 +1666,10 @@
 //#define LEVEL_BED_CORNERS
 
 #if ENABLED(LEVEL_BED_CORNERS)
-  #define LEVEL_CORNERS_INSET_LFRB { 26.4, 26.4, 26.4, 26.4 } // (mm) Left, Front, Right, Back insets
+  #define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
   #define LEVEL_CORNERS_HEIGHT      0.0   // (mm) Z height of nozzle at leveling points
   #define LEVEL_CORNERS_Z_HOP       4.0   // (mm) Z height of nozzle between leveling points
-  #define LEVEL_CENTER_TOO              // Move to the center after the last corner
+  //#define LEVEL_CENTER_TOO              // Move to the center after the last corner
   //#define LEVEL_CORNERS_USE_PROBE
   #if ENABLED(LEVEL_CORNERS_USE_PROBE)
     #define LEVEL_CORNERS_PROBE_TOLERANCE 0.1
@@ -1733,12 +1727,12 @@
 //#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
-  #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing
-  #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing
+  #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE - 10) / 2)    // X point for Z homing
+  #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE - 10) / 2)    // Y point for Z homing
 #endif
 
 // Homing speeds (mm/min)
-#define HOMING_FEEDRATE_MM_M { (60*60), (60*60), (6*60) }
+#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (4*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -1847,24 +1841,24 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "Warmup"
-#define PREHEAT_1_TEMP_HOTEND 180
-#define PREHEAT_1_TEMP_BED     50
-#define PREHEAT_1_FAN_SPEED   0 // Value from 0 to 255
+#define PREHEAT_1_TEMP_HOTEND 150
+#define PREHEAT_1_TEMP_BED     45
+#define PREHEAT_1_FAN_SPEED   255 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "PLA"
-#define PREHEAT_2_TEMP_HOTEND 205
-#define PREHEAT_2_TEMP_BED     60
+#define PREHEAT_2_TEMP_HOTEND 190
+#define PREHEAT_2_TEMP_BED     55
 #define PREHEAT_2_FAN_SPEED   255 // Value from 0 to 255
 
-#define PREHEAT_3_LABEL       "PETG"
+#define PREHEAT_3_LABEL       "ABS"
 #define PREHEAT_3_TEMP_HOTEND 240
 #define PREHEAT_3_TEMP_BED     70
-#define PREHEAT_3_FAN_SPEED   102 // Value from 0 to 255
+#define PREHEAT_3_FAN_SPEED   255 // Value from 0 to 255
 
-#define PREHEAT_4_LABEL       "ABS"
-#define PREHEAT_4_TEMP_HOTEND 250
-#define PREHEAT_4_TEMP_BED    100
-#define PREHEAT_4_FAN_SPEED   30 // Value from 0 to 255
+#define PREHEAT_4_LABEL       "PETG"
+#define PREHEAT_4_TEMP_HOTEND 240
+#define PREHEAT_4_TEMP_BED     70
+#define PREHEAT_4_FAN_SPEED   255 // Value from 0 to 255
 
 //#define PREHEAT_5_LABEL       "TPU"
 //#define PREHEAT_5_TEMP_HOTEND 230
@@ -1931,7 +1925,7 @@
  *   Caveats: The ending Z should be the same as starting Z.
  * Attention: EXPERIMENTAL. G-code arguments may change.
  */
-#define NOZZLE_CLEAN_FEATURE
+//#define NOZZLE_CLEAN_FEATURE
 
 #if ENABLED(NOZZLE_CLEAN_FEATURE)
   // Default number of pattern repetitions
@@ -2178,7 +2172,6 @@
 // By default Marlin assumes you have a buzzer with a fixed frequency.
 //
 //#define SPEAKER
-//#define BEEPER_PIN PA14
 
 //
 // The duration and frequency for the UI feedback sound.
@@ -2456,10 +2449,7 @@
 // This is RAMPS-compatible using a single 10-pin connector.
 // (For CR-10 owners who want to replace the Melzi Creality board but retain the display)
 //
-#define CR10_STOCKDISPLAY
-#if ENABLED(CR10_STOCKDISPLAY)
-  #define RET6_12864_LCD  // Specific to the SoC (can either be RET / VET)
-#endif
+//#define CR10_STOCKDISPLAY
 
 //
 // Ender-2 OEM display, a variant of the MKS_MINI_12864
@@ -2751,16 +2741,19 @@
 //
 // Ender-3 v2 OEM display. A DWIN display with Rotary Encoder.
 //
-//#define DWIN_CREALITY_LCD_JYERSUI  
-//#if ENABLED(DWIN_CREALITY_LCD_JYERSUI)
-
-//#define DWIN_CREALITY_LCD
+#define DWIN_CREALITY_LCD
 #if ENABLED(DWIN_CREALITY_LCD)
   //
   // Enable custom icons
   // NB: Requires Ender-3 v2 OEM display firmware update, or you will get blank icons!
   //
   //#define DWIN_CREALITY_LCD_CUSTOM_ICONS
+
+  //
+  // Enable gcode preview images
+  // Requires using a post-processing script with Cura or PrusaSlicer
+  //
+  #define DWIN_CREALITY_LCD_GCODE_PREVIEW
 #endif
 
 //

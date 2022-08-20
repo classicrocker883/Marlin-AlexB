@@ -49,7 +49,7 @@
  * Průša Calculator:    https://blog.prusaprinters.org/calculator_3416/
  *
  * Calibration Guides:  https://reprap.org/wiki/Calibration
- *                     
+ *
  * Example Configs:     https://github.com/MarlinFirmware/Configurations/branches/all
  *
  * Průša Calculator:    https://blog.prusaprinters.org/calculator_3416/
@@ -93,7 +93,7 @@
 #define SHOW_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Bootscreen.h on startup.
-//#define SHOW_CUSTOM_BOOTSCREEN
+#define SHOW_CUSTOM_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
 //#define CUSTOM_STATUS_SCREEN_IMAGE
@@ -108,7 +108,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT 1
+#define SERIAL_PORT 2
 
 /**
  * Serial Port Baud Rate
@@ -1649,7 +1649,7 @@
   //===========================================================================
 
   #define MESH_INSET 12          // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_X 5    // Don't use more than 7 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   //#define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest Z at Z_MIN_POS
@@ -2751,7 +2751,7 @@
 //
 // Ender-3 v2 OEM display. A DWIN display with Rotary Encoder.
 //
-//#define DWIN_CREALITY_LCD_JYERSUI  
+//#define DWIN_CREALITY_LCD_JYERSUI
 //#if ENABLED(DWIN_CREALITY_LCD_JYERSUI)
 
 //#define DWIN_CREALITY_LCD
@@ -2760,7 +2760,7 @@
   // Enable custom icons
   // NB: Requires Ender-3 v2 OEM display firmware update, or you will get blank icons!
   //
-  //#define DWIN_CREALITY_LCD_CUSTOM_ICONS
+  #define DWIN_CREALITY_LCD_CUSTOM_ICONS
 #endif
 
 //
